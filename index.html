@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumier Studio — Custom Fine Art Paintings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:       #B8963E;
+      --gold-light: #CDA84F;
+      --gold-muted: #D4C08A;
+      --gold-pale:  #F2EBD9;
+      --black:      #111111;
+      --gray:       #6B6560;
+      --rule:       rgba(184,150,62,0.22);
+      --bg:         #FFFFFF;
+      --off:        #FAFAF8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--black);
+      overflow-x: hidden;
+      font-weight: 300;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      height: 72px;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+
+    .logo-dot { color: var(--gold); }
+
+    nav { display: flex; align-items: center; gap: 40px; }
+
+    nav a {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+      font-weight: 400;
+    }
+
+    nav a:hover { color: var(--black); }
+
+    .nav-cta {
+      background: var(--black);
+      color: #fff !important;
+      padding: 11px 26px;
+      letter-spacing: 0.14em;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--gold) !important; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 8% 80px 10%;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .hero-eyebrow-line {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-eyebrow span {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 400;
+    }
+
+    .hero-left h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3rem, 4.5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.08;
+      color: var(--black);
+      margin-bottom: 28px;
+    }
+
+    .hero-left h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-left p {
+      font-size: 0.95rem;
+      color: var(--gray);
+      line-height: 1.85;
+      max-width: 420px;
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+
+    .hero-actions { display: flex; gap: 16px; align-items: center; }
+
+    .btn-dark {
+      background: var(--black);
+      color: #fff;
+      padding: 15px 36px;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      transition: background 0.2s;
+    }
+
+    .btn-dark:hover { background: var(--gold); }
+
+    .btn-ghost {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.2s;
+    }
+
+    .btn-ghost:hover { color: var(--gold); }
+
+    .btn-ghost-line {
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+      transition: width 0.2s;
+    }
+
+    .btn-ghost:hover .btn-ghost-line { width: 40px; }
+
+    .hero-digital-note {
+      margin-top: 52px;
+      padding-top: 28px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-digital-note svg { color: var(--gold); flex-shrink: 0; }
+
+    .hero-digital-note p {
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      color: var(--gray);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--gold-pale);
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-right-overlay {
+      position: absolute;
+      bottom: 36px;
+      left: 36px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      padding: 18px 24px;
+      border-left: 2px solid var(--gold);
+    }
+
+    .hero-right-overlay p {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 3px;
+    }
+
+    .hero-right-overlay strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--black);
+    }
+
+    /* ─── SHARED SECTION ─── */
+    section { padding: 110px 10%; }
+
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .section-eyebrow-line { width: 32px; height: 1px; background: var(--gold); }
+
+    .section-eyebrow span {
+      font-size: 0.67rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 400;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 3.2vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--black);
+    }
+
+    h2 em { font-style: italic; color: var(--gold); }
+
+    /* ─── OUR STORY ─── */
+    #story {
+      background: var(--off);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .story-img-wrap {
+      position: relative;
+    }
+
+    .story-img-frame {
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      right: 16px;
+      bottom: 16px;
+      border: 1px solid var(--gold-muted);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .story-img-wrap img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+    }
+
+    .story-img-placeholder {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: var(--gold-pale);
+    }
+
+    .story-body { display: flex; flex-direction: column; gap: 22px; }
+
+    .story-body p {
+      font-size: 0.95rem;
+      color: var(--gray);
+      line-height: 1.9;
+    }
+
+    .story-body p strong { color: var(--black); font-weight: 500; }
+
+    .story-stats {
+      display: flex;
+      gap: 0;
+      margin-top: 16px;
+      border-top: 1px solid var(--rule);
+      padding-top: 32px;
+    }
+
+    .stat {
+      flex: 1;
+      padding-right: 28px;
+      border-right: 1px solid var(--rule);
+      margin-right: 28px;
+    }
+
+    .stat:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.67rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    /* ─── OUR WORK ─── */
+    #work { background: var(--bg); }
+
+    .work-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+    }
+
+    .work-head-note {
+      font-size: 0.85rem;
+      color: var(--gray);
+      max-width: 280px;
+      line-height: 1.7;
+      text-align: right;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 12px;
+    }
+
+    .g1 { grid-column: 1 / 6; grid-row: 1 / 3; }
+    .g2 { grid-column: 6 / 9; grid-row: 1; }
+    .g3 { grid-column: 9 / 13; grid-row: 1; }
+    .g4 { grid-column: 6 / 10; grid-row: 2; }
+    .g5 { grid-column: 10 / 13; grid-row: 2; }
+
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+      background: var(--gold-pale);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+      min-height: 180px;
+    }
+
+    .gallery-item:hover img { transform: scale(1.04); }
+
+    .gallery-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 36px 18px 18px;
+      background: linear-gradient(to top, rgba(17,17,17,0.55), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .gallery-item:hover .gallery-label { opacity: 1; }
+
+    .gallery-label span {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+      background: rgba(184,150,62,0.85);
+      padding: 5px 12px;
+    }
+
+    /* ─── STYLES / WHAT WE CAN DO ─── */
+    #styles { background: var(--off); }
+
+    .styles-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 64px;
+    }
+
+    .styles-intro p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.85;
+      align-self: end;
+    }
+
+    .style-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--rule);
+    }
+
+    .style-card {
+      background: var(--bg);
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+
+    .style-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.08); z-index: 1; position: relative; }
+
+    .style-card-img {
+      aspect-ratio: 3/2;
+      overflow: hidden;
+      background: var(--gold-pale);
+    }
+
+    .style-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    .style-card:hover .style-card-img img { transform: scale(1.05); }
+
+    .style-card-body { padding: 28px 28px 32px; }
+
+    .style-card-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+
+    .style-card-body p {
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.75;
+      margin-bottom: 22px;
+    }
+
+    .style-divider {
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .style-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .style-from {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .style-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 300;
+      color: var(--black);
+    }
+
+    /* ─── ORDER ─── */
+    #order { background: var(--bg); }
+
+    .order-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 100px;
+      align-items: start;
+    }
+
+    .order-left { display: flex; flex-direction: column; gap: 36px; }
+
+    .order-left > p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.85;
+    }
+
+    .process { display: flex; flex-direction: column; gap: 0; }
+
+    .process-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0 16px;
+      padding-bottom: 28px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+    }
+
+    .process-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .process-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--gold-muted);
+      line-height: 1;
+      padding-top: 2px;
+    }
+
+    .process-text h4 {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .process-text p {
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* FORM */
+    .order-form-wrap {
+      border: 1px solid var(--rule);
+      padding: 48px 44px;
+      background: var(--off);
+    }
+
+    .order-form-wrap h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+
+    .form-subtitle {
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin-bottom: 32px;
+      letter-spacing: 0.04em;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .form-group { margin-bottom: 18px; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 8px;
+      font-weight: 400;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid #E0D9CC;
+      padding: 13px 16px;
+      font-size: 0.9rem;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.2s;
+      border-radius: 0;
+      appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #C0B8AC; }
+
+    .form-group textarea { resize: vertical; min-height: 88px; }
+
+    .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8963E' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; cursor: pointer; }
+
+    .form-group select option { background: #fff; color: var(--black); }
+
+    /* Upload */
+    .upload-zone {
+      border: 1px dashed #C8BFA8;
+      padding: 32px 20px;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.2s, background 0.2s;
+      background: var(--bg);
+    }
+
+    .upload-zone:hover, .upload-zone.drag-over {
+      border-color: var(--gold);
+      background: var(--gold-pale);
+    }
+
+    .upload-zone input[type="file"] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+    }
+
+    .upload-icon-wrap {
+      width: 40px; height: 40px;
+      border: 1px solid var(--gold-muted);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px;
+    }
+
+    .upload-icon-wrap svg { color: var(--gold); }
+
+    .upload-zone p {
+      font-size: 0.8rem;
+      color: var(--gray);
+      line-height: 1.6;
+      pointer-events: none;
+    }
+
+    .upload-zone strong { color: var(--black); font-weight: 500; }
+
+    .upload-preview { display: none; margin-top: 14px; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .upload-preview.show { display: flex; }
+    .preview-thumb { width: 64px; height: 64px; object-fit: cover; border: 1px solid var(--rule); }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--black);
+      color: #fff;
+      border: none;
+      padding: 17px;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+
+    .submit-btn:hover { background: var(--gold); }
+
+    /* Confirmation */
+    .confirmation { display: none; text-align: center; padding: 32px 0; animation: fadeUp 0.5s ease; }
+    .confirmation.show { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .confirm-rule { width: 40px; height: 1px; background: var(--gold); margin: 0 auto 24px; }
+
+    .confirm-mark {
+      width: 56px; height: 56px;
+      border: 1px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.3rem;
+      color: var(--gold);
+    }
+
+    .confirmation h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+
+    .confirmation p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.75;
+      max-width: 320px;
+      margin: 0 auto 8px;
+    }
+
+    .confirm-time-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid var(--rule);
+      padding: 10px 22px;
+      margin-top: 22px;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black);
+      padding: 64px 10% 36px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .footer-logo-dot { color: var(--gold); }
+
+    .footer-tagline {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 6px;
+      letter-spacing: 0.06em;
+    }
+
+    .footer-note {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.06em;
+      line-height: 1.7;
+      max-width: 280px;
+      text-align: right;
+    }
+
+    .footer-note strong { color: rgba(184,150,62,0.7); font-weight: 400; }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.22);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1000px) {
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { min-height: 50vw; }
+      .hero-left { padding: 64px 8%; }
+      #story { grid-template-columns: 1fr; gap: 52px; }
+      .styles-intro { grid-template-columns: 1fr; }
+      .order-grid { grid-template-columns: 1fr; gap: 56px; }
+      .gallery { grid-template-columns: 1fr 1fr; }
+      .g1, .g2, .g3, .g4, .g5 { grid-column: auto; grid-row: auto; }
+      .style-cards { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      nav a:not(.nav-cta) { display: none; }
+      section { padding: 72px 6%; }
+      .form-row { grid-template-columns: 1fr; }
+      .order-form-wrap { padding: 28px 22px; }
+      .gallery { grid-template-columns: 1fr; }
+      .footer-note { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════ HEADER ═══════ -->
+  <header>
+    <div class="logo">Lumier<span class="logo-dot">.</span></div>
+    <nav>
+      <a href="#story">Our Story</a>
+      <a href="#work">Gallery</a>
+      <a href="#styles">Styles</a>
+      <a href="#order" class="nav-cta">Commission</a>
+    </nav>
+  </header>
+
+  <!-- ═══════ HERO ═══════ -->
+  <section id="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span>Fine Art · Custom Commissions</span>
+      </div>
+      <h1>Your Story,<br />Rendered in<br /><em>Timeless Art</em></h1>
+      <p>
+        We transform your most cherished photographs into exquisite,
+        museum-quality paintings — delivered as a stunning high-resolution
+        digital file, ready to print at any scale.
+      </p>
+      <div class="hero-actions">
+        <a href="#order" class="btn-dark">Commission a Piece</a>
+        <a href="#work" class="btn-ghost">
+          <span class="btn-ghost-line"></span>
+          View Gallery
+        </a>
+      </div>
+      <div class="hero-digital-note">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="3" width="20" height="14" rx="1.5"/><path d="M8 21h8M12 17v4"/>
+        </svg>
+        <p>All works are delivered as premium digital files — print on canvas, fine art paper, or metal at any size.</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="images/work4.jpg" alt="Fine art painting" onerror="this.style.display='none'" />
+      <div class="hero-right-overlay">
+        <p>Featured Work</p>
+        <strong>Golden Hour — Oil on Canvas</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ OUR STORY ═══════ -->
+  <section id="story">
+    <div class="story-img-wrap">
+      <div class="story-img-frame"></div>
+      <img src="images/story.jpg" alt="Studio detail" onerror="this.outerHTML='<div class=\'story-img-placeholder\'></div>'" />
+    </div>
+    <div class="story-body">
+      <div class="section-eyebrow">
+        <div class="section-eyebrow-line"></div>
+        <span>Our Story</span>
+      </div>
+      <h2>Where Every<br />Detail <em>Matters</em></h2>
+      <p>
+        Lumier was founded on a single belief: that every photograph holds a memory
+        worth elevating. Our studio brings together the finest artistic techniques
+        to transform your images into paintings that carry emotional depth,
+        luminous color, and lasting beauty.
+      </p>
+      <p>
+        Whether it's a beloved pet, a family home, a landscape that took your breath
+        away, or a portrait of someone irreplaceable — we render it with the care
+        and craftsmanship it deserves.
+      </p>
+      <p>
+        Each finished piece is delivered as a <strong>high-resolution digital file</strong>,
+        produced at print-ready quality — perfect for large-format canvas, fine art
+        paper, or any medium you choose.
+      </p>
+      <div class="story-stats">
+        <div class="stat">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Commissions</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Signature Styles</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">48h</div>
+          <div class="stat-label">Avg. Delivery</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ OUR WORK ═══════ -->
+  <section id="work">
+    <div class="work-head">
+      <div>
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <span>Our Work</span>
+        </div>
+        <h2>A Gallery of<br /><em>Moments</em></h2>
+      </div>
+      <p class="work-head-note">
+        Every painting begins as an ordinary photograph.
+        We turn it into something you will treasure forever.
+      </p>
+    </div>
+    <div class="gallery">
+      <div class="gallery-item g1">
+        <img src="images/work1.jpg" alt="City at golden hour" />
+        <div class="gallery-label"><span>Oil Painting</span></div>
+      </div>
+      <div class="gallery-item g2">
+        <img src="images/work2.jpg" alt="Golden retriever portrait" />
+        <div class="gallery-label"><span>Pet Portrait</span></div>
+      </div>
+      <div class="gallery-item g3">
+        <img src="images/work3.jpg" alt="Estate aerial" />
+        <div class="gallery-label"><span>Aerial Oil</span></div>
+      </div>
+      <div class="gallery-item g4">
+        <img src="images/work4.jpg" alt="Bluebonnet field" />
+        <div class="gallery-label"><span>Oil Painting</span></div>
+      </div>
+      <div class="gallery-item g5">
+        <img src="images/work5.jpg" alt="French bulldog" />
+        <div class="gallery-label"><span>Pet Portrait</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ STYLES ═══════ -->
+  <section id="styles">
+    <div class="styles-intro">
+      <div>
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <span>What We Offer</span>
+        </div>
+        <h2>Three Styles,<br />One <em>Standard</em></h2>
+      </div>
+      <p>
+        Each medium brings its own voice to your subject.
+        Our team will help you choose the style that best
+        suits your photograph and the feeling you want preserved.
+      </p>
+    </div>
+    <div class="style-cards">
+
+      <div class="style-card">
+        <div class="style-card-img">
+          <img src="images/style-oil.jpg" alt="Oil painting" onerror="this.style.opacity=0" />
+        </div>
+        <div class="style-card-body">
+          <div class="style-divider"></div>
+          <h3>Oil Painting</h3>
+          <p>
+            Rich, luminous, and full of presence. Oil captures warm golden light,
+            dramatic depth, and the tactile beauty of a painted canvas.
+            The definitive choice for portraits, architecture, and landscapes.
+          </p>
+          <div class="style-price-row">
+            <span class="style-from">From</span>
+            <span class="style-price">$49</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="style-card">
+        <div class="style-card-img">
+          <img src="images/style-watercolor.jpg" alt="Watercolor" onerror="this.style.opacity=0" />
+        </div>
+        <div class="style-card-body">
+          <div class="style-divider"></div>
+          <h3>Watercolor</h3>
+          <p>
+            Soft, luminous, and ethereal. Watercolor lets pigment bloom and breathe,
+            producing a delicate, light-filled beauty. Perfect for florals,
+            travel scenes, weddings, and botanical subjects.
+          </p>
+          <div class="style-price-row">
+            <span class="style-from">From</span>
+            <span class="style-price">$39</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="style-card">
+        <div class="style-card-img">
+          <img src="images/style-pencil.jpg" alt="Colored pencil" onerror="this.style.opacity=0" />
+        </div>
+        <div class="style-card-body">
+          <div class="style-divider"></div>
+          <h3>Colored Pencil</h3>
+          <p>
+            Intimate, layered, and full of character. The fine strokes of colored
+            pencil give your piece an irreplaceable handmade warmth — personal,
+            detailed, and timeless.
+          </p>
+          <div class="style-price-row">
+            <span class="style-from">From</span>
+            <span class="style-price">$35</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════ ORDER ═══════ -->
+  <section id="order">
+    <div class="order-grid">
+
+      <div class="order-left">
+        <div>
+          <div class="section-eyebrow">
+            <div class="section-eyebrow-line"></div>
+            <span>Commission a Piece</span>
+          </div>
+          <h2>Begin Your<br /><em>Commission</em></h2>
+        </div>
+        <p>
+          Submit your photograph and tell us what you envision.
+          Our team will reach out within the hour to discuss your piece,
+          confirm details, and guide you through the process.
+        </p>
+        <div class="process">
+          <div class="process-item">
+            <div class="process-num">01</div>
+            <div class="process-text">
+              <h4>Upload Your Photo</h4>
+              <p>Any clear, well-lit photograph works beautifully. The higher the resolution, the finer the detail we can achieve.</p>
+            </div>
+          </div>
+          <div class="process-item">
+            <div class="process-num">02</div>
+            <div class="process-text">
+              <h4>Choose Your Style</h4>
+              <p>Select oil, watercolor, or colored pencil — or let us recommend the best match for your subject.</p>
+            </div>
+          </div>
+          <div class="process-item">
+            <div class="process-num">03</div>
+            <div class="process-text">
+              <h4>We Contact You Within the Hour</h4>
+              <p>Our team will reach out via message to confirm your commission, discuss any details, and finalize pricing.</p>
+            </div>
+          </div>
+          <div class="process-item">
+            <div class="process-num">04</div>
+            <div class="process-text">
+              <h4>Receive Your Painting</h4>
+              <p>Your finished piece arrives as a print-ready digital file — yours to print anywhere, at any size, forever.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-form-wrap" id="order-form-container">
+        <h3>Start Your Order</h3>
+        <p class="form-subtitle">Complete the form below and we'll be in touch shortly.</p>
+
+        <form id="order-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" placeholder="Jane" required />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" placeholder="Smith" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone / Message Number</label>
+            <input type="tel" id="phone" placeholder="+1 (555) 000-0000" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="jane@example.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="style">Painting Style</label>
+            <select id="style" required>
+              <option value="" disabled selected>Select a style…</option>
+              <option value="oil">Oil Painting</option>
+              <option value="watercolor">Watercolor</option>
+              <option value="pencil">Colored Pencil</option>
+              <option value="unsure">Help Me Choose</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Upload Your Photo</label>
+            <div class="upload-zone" id="upload-zone">
+              <input type="file" id="photo-upload" accept="image/*" multiple />
+              <div class="upload-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+              </div>
+              <p><strong>Click to upload</strong> or drag &amp; drop<br />JPG · PNG · HEIC &nbsp;·&nbsp; Up to 20 MB</p>
+            </div>
+            <div class="upload-preview" id="upload-preview"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Notes (Optional)</label>
+            <textarea id="notes" placeholder="Describe the mood, colors, or details you'd like us to emphasize…"></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Submit Commission</button>
+        </form>
+
+        <div class="confirmation" id="confirmation">
+          <div class="confirm-mark">✓</div>
+          <div class="confirm-rule"></div>
+          <h3>Commission Received</h3>
+          <p>Thank you. Your photograph has been submitted and your commission is in our queue.</p>
+          <p>Our team will contact you via message within the next hour to confirm your order and discuss the details.</p>
+          <div class="confirm-time-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+            </svg>
+            Expect a message within 1 hour
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Lumier<span class="footer-logo-dot">.</span></div>
+        <div class="footer-tagline">Custom Fine Art Commissions</div>
+      </div>
+      <div class="footer-note">
+        All artwork is delivered as a <strong>high-resolution digital file</strong>.<br />
+        No physical canvas is shipped. Print at any size, anywhere.
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Lumier Studio. All rights reserved.</span>
+      <span>Fine Art · Digital Delivery · Custom Commissions</span>
+    </div>
+  </footer>
+
+  <script>
+    // Upload preview
+    const zone    = document.getElementById('upload-zone');
+    const input   = document.getElementById('photo-upload');
+    const preview = document.getElementById('upload-preview');
+
+    input.addEventListener('change', renderPreviews);
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.classList.remove('drag-over');
+      input.files = e.dataTransfer.files;
+      renderPreviews();
+    });
+
+    function renderPreviews() {
+      preview.innerHTML = '';
+      const files = Array.from(input.files);
+      if (!files.length) return;
+      preview.classList.add('show');
+      files.forEach(file => {
+        if (!file.type.startsWith('image/')) return;
+        const reader = new FileReader();
+        reader.onload = e => {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.className = 'preview-thumb';
+          preview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // Form submit
+    document.getElementById('order-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const ok = ['fname','phone','email','style'].every(id => document.getElementById(id).value.trim());
+      if (!ok) { alert('Please complete all required fields.'); return; }
+      document.getElementById('order-form').style.display = 'none';
+      const conf = document.getElementById('confirmation');
+      conf.classList.add('show');
+      document.getElementById('order-form-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    // Header border on scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').style.borderBottomColor =
+        window.scrollY > 10 ? 'rgba(184,150,62,0.22)' : 'rgba(184,150,62,0.12)';
+    });
+  </script>
+</body>
+</html>
